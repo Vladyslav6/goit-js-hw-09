@@ -4,30 +4,9 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-console.log(getRandomHexColor());
-
-// const buttunChange = document.querySelector('.change-color');
-// buttunChange.addEventListener('click', chengeButt);
-// const bodyBackgr = document.body;
-// const spanChenge = document.querySelector('.color');
-// //////////////////
-
-// ////////////////////
-// //////////////////
-
-// ////////////////////
-// //////////////////
-
-// ////////////////////
-// function chengeButt() {
-//   let chengeColor = getRandomHexColor();
-//   bodyBackgr.style.backgroundColor = chengeColor;
-//   spanChenge.textContent = chengeColor;
-// }
 const startButton = document.querySelector('button[data-start]');
 const bodyBackgr = document.body;
 
-/////////
 startButton.addEventListener('click', () => {
   startButton.setAttribute('disabled', '');
   stopButton.removeAttribute('disabled', '');
@@ -44,3 +23,22 @@ stopButton.addEventListener('click', () => {
   startButton.removeAttribute('disabled', '');
   stopButton.setAttribute('disabled', '');
 });
+
+// ////////////////////
+// //////////////////
+
+// const buttunChange = document.querySelector('.change-color');
+// buttunChange.addEventListener('click', chengeButt);
+// const bodyBackgr = document.body;
+// const spanChenge = document.querySelector('.color');
+// //////////////////
+
+// ////////////////////
+// //////////////////
+
+// ////////////////////
+// function chengeButt() {
+//   let chengeColor = getRandomHexColor();
+//   bodyBackgr.style.backgroundColor = chengeColor;
+//   spanChenge.textContent = chengeColor;
+// }
