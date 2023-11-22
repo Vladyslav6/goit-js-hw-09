@@ -1,6 +1,8 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-
+import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+////
 const startButton = document.querySelector('button[data-start]');
 const SetDays = document.querySelector('span[data-days]');
 const SetHours = document.querySelector('span[data-hours]');
@@ -23,7 +25,7 @@ const options = {
     // const SetIntr = setInterval(() => {
     if (targetDate < currentDate) {
       //   clearInterval(SetIntr);
-      alert('Please choose a date in the future');
+      Notify.failure('Please choose a date in the future');
       startButton.setAttribute('disabled', '');
       return;
     }
@@ -35,12 +37,18 @@ const options = {
         currentDate = new Date();
         targetDate = new Date(selectedDates[0]);
         const finishDay = convertMs(targetDate - currentDate);
-        SetDays.textContent = finishDay.days;
-        SetHours.textContent = finishDay.hours;
-        SetMinutes.textContent = finishDay.minutes;
-        SetSeconds.textContent = finishDay.seconds;
+        SetDays.textContent = addLeadingZero(finishDay.days);
+        SetHours.textContent = addLeadingZero(finishDay.hours);
+        SetMinutes.textContent = addLeadingZero(finishDay.minutes);
+        SetSeconds.textContent = addLeadingZero(finishDay.seconds);
       }, 1000);
     });
+    ///////PadStart///
+    function addLeadingZero(value) {
+      let NumberStr = String(value).padStart(2, '0');
+      return NumberStr;
+    }
+    ////////
 
     function convertMs(ms) {
       // Number of milliseconds per unit of time
