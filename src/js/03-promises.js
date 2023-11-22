@@ -26,6 +26,8 @@ function handleSubmit(event) {
   }
   document.querySelector('.form').reset();
 }
+////////
+////////
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
