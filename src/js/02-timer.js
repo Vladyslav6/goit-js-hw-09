@@ -11,6 +11,7 @@ const SetSeconds = document.querySelector('span[data-seconds]');
 //////
 /////
 startButton.setAttribute('disabled', '');
+let timerId;
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -22,9 +23,8 @@ const options = {
     let targetDate = new Date(selectedDates[0]);
 
     //////
-    // const SetIntr = setInterval(() => {
+
     if (targetDate < currentDate) {
-      //   clearInterval(SetIntr);
       Notify.failure('Please choose a date in the future');
       startButton.setAttribute('disabled', '');
       return;
@@ -33,14 +33,21 @@ const options = {
     startButton.removeAttribute('disabled', '');
 
     startButton.addEventListener('click', () => {
+      startButton.setAttribute('disabled', '');
       timerId = setInterval(() => {
         currentDate = new Date();
         targetDate = new Date(selectedDates[0]);
         const finishDay = convertMs(targetDate - currentDate);
-        SetDays.textContent = addLeadingZero(finishDay.days);
-        SetHours.textContent = addLeadingZero(finishDay.hours);
-        SetMinutes.textContent = addLeadingZero(finishDay.minutes);
-        SetSeconds.textContent = addLeadingZero(finishDay.seconds);
+        if (currentDate <= targetDate) {
+          SetDays.textContent = addLeadingZero(finishDay.days);
+          SetHours.textContent = addLeadingZero(finishDay.hours);
+          SetMinutes.textContent = addLeadingZero(finishDay.minutes);
+          SetSeconds.textContent = addLeadingZero(finishDay.seconds);
+        } else {
+          clearInterval(timerId);
+          startButton.removeAttribute('disabled', '');
+          return;
+        }
       }, 1000);
     });
     ///////PadStart///
